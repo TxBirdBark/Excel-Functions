@@ -1,0 +1,14 @@
+appendArray = LAMBDA(arrayA, arrayB,
+    LET(
+        rowsA, ROWS( arrayA ),
+        rowsB, ROWS( arrayB ),
+        MAKEARRAY(
+            // rows
+            rowsA + rowsB, MAX( COLUMNS( arrayA ),
+            // columns
+            COLUMNS( arrayB ) ),
+            // value at (r,c)
+            LAMBDA(r,c, INDEX( IF( r <= rowsA, arrayA, arrayB ), IF( r <= rowsA, r, r - rowsA ), c ) )
+        )
+    )
+);
